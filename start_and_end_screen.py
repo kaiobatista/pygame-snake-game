@@ -1,5 +1,5 @@
 import pygame as pg
-from texts import show_text
+from labels import show_text
 
 
 def start_screen(screen):

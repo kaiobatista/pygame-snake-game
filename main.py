@@ -1,7 +1,6 @@
-import pygame as pg
 from snake_conf import *
 from apple import *
-from texts import *
+from labels import *
 from start_and_end_screen import start_screen
 from start_and_end_screen import end_screen
 
