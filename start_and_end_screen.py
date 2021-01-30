@@ -43,7 +43,7 @@ def end_screen(screen, score):
     pg.mixer.music.set_volume(0.7)
     highscore = get_highscore('highscore.txt')
     try:
-        highscore = int(highscore)
+        highscore = int(highscore, 2)
     except ValueError:
         if highscore is not int:
             highscore = 0

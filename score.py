@@ -9,4 +9,4 @@ def get_highscore(arq):
 
 def set_highscore(arq, scr):
     with open(arq, 'w+') as file:
-        file.write(str(scr))
+        file.write(str(bin(scr)))
