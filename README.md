@@ -12,6 +12,10 @@ Download: [mirror](https://www.github.com/KaioBatista/pygame-snake-game/archive/
 
 - **Índices**
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> master
 - [**Apresentação**](#Apresentação)
 
 - [**Download e Instalação**](#Download_e_Instalação)
@@ -21,8 +25,19 @@ Download: [mirror](https://www.github.com/KaioBatista/pygame-snake-game/archive/
   - [Instalação](#Instalação)
   
 - [**Problemas Conhecidos**](#Problemas_Conhecidos)
+<<<<<<< HEAD
 
   
+=======
+=======
+- [**Apresentação**](##Apresentação)
+- [**Download e Instalação**](##Download_e_Instalação)
+  - [Requisitos](###Requisitos)
+  - [Download](###Download)
+  - [Instalação](###Instalação)
+- [**Problemas Conhecidos**](##Problemas_Conhecidos)
+>>>>>>> master
+>>>>>>> master
 
 # Apresentação
 
@@ -114,4 +129,12 @@ _MIT License_
 
 ---
 
+<<<<<<< HEAD
 :arrow_heading_up:[Voltar ao início](#Pygame_Snake_Game)
+=======
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
+:arrow_heading_up:[Voltar ao início](#Pygame_Snake_Game)
+>>>>>>> master
