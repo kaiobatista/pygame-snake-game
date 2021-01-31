@@ -3,12 +3,7 @@
 <center><h1>Pygame Snake Game</h1></center>
 
 Versão atual: **V1.0**
-
-<<<<<<< HEAD
 Download: [mirror](https://www.github.com/KaioBatisa/archive/master.zip)
-=======
-Download: [mirror](https://www.github.com/KaioBatisa/archives/master.zip)
->>>>>>> master
 
 # Apresentação
 
