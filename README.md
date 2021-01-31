@@ -49,7 +49,7 @@ Ao chegar na tela de game over do jogo, ocorre uma verificação na pasta do gam
 
 ---
 
-![](img-git/game.gif)
+![gif-jogo](img-git/game.gif)
 
 <span style="color:#8f8f8f">~~Sim, o developer, no caso eu, é um noob no próprio jogo, acontece...~~</span>
 
@@ -94,7 +94,7 @@ Após o download executado com sucesso basta seguir apenas 5 passos:
 - Extraia o arquivo `master.zip` para alguma pasta de sua preferência
 - Abra a pasta criada com o arquivo extraido e aperte **_Shift_ + Botão Direito** do mouse em um local vazio
 - Clique na opção "_Abrir janela de comando aqui_" que aparecerá
-- Com o prompt de comando aberto; digite: `python3 -m main,py` para abrir o game
+- Com o prompt de comando aberto; digite: `python3 -m main.py` para abrir o game
 - Divirta-se!
 
 ---
