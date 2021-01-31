@@ -4,7 +4,10 @@
 
 Versão atual: **V1.0**
 
-Download: [mirror](https://github.com/KaioBatista/pygame-snake-game/archive/master.zip)
+Download: [mirror](https://www.github.com/KaioBatista/pygame-snake-game/archive/master.zip)
+
+
+
 # Apresentação
 
 ![Tela-Inicial](img-git/tela-inicial.jpg)
