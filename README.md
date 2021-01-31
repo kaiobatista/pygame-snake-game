@@ -6,7 +6,16 @@ Versão atual: **V1.0**
 
 Download: [mirror](https://www.github.com/KaioBatista/pygame-snake-game/archive/master.zip)
 
+---
 
+## Índices
+
+- [**Apresentação**](#Apresentação)
+- [**Download e Instalação**](#Download e Instalação)
+  - [Requisitos](#Requisitos)
+  - [Download](#Download)
+  - [Instalação](#Instalação)
+- [**Problemas Conhecidos**](#Problemas Conhecidos)
 
 # Apresentação
 
@@ -38,9 +47,11 @@ Ao chegar na tela de game over do jogo, ocorre uma verificação na pasta do gam
 
 Os comandos são super intuitíveis, utilize" _W_ " , "_A_",  "_S_" , "_D_" para se movimentar, ou, caso prefira, utilize as famosas setinhas; "_Up_arrow_," "_Left_arrow_", "_Down_arrow_", "_Right_arrow_".
 
+O game conta com músicas e efeitos sonoros, todos contém a licença CC0, ou seja, **sem direitos reservados**
+
 ---
 
-O game conta com trihas sonoras que são incríveis, todas contém a licença CC0, ou seja, **sem direitos reservados**
+
 
 ## Download e Instalação
 
@@ -93,3 +104,7 @@ Made by: Kaio Batista
 Date: 01/31/2021
 
 _MIT License_
+
+
+
+:arrow_heading_up:[Voltar ao início](#Pygame Snake Game)
