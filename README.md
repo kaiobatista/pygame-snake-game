@@ -2,6 +2,10 @@
 
 <center><h1>Pygame Snake Game</h1></center>
 
+Versão atual: **V1.0**
+
+Download: [mirror](https://www.github.com/KaioBatisa/archive/master.zip)
+
 # Apresentação
 
 ![Tela-Inicial](img-git/tela-inicial.jpg)
@@ -32,6 +36,58 @@ Ao chegar na tela de game over do jogo, ocorre uma verificação na pasta do gam
 
 Os comandos são super intuitíveis, utilize" _W_ " , "_A_",  "_S_" , "_D_" para se movimentar, ou, caso prefira, utilize as famosas setinhas; "_Up_arrow_," "_Left_arrow_", "_Down_arrow_", "_Right_arrow_".
 
+---
 
+O game conta com trihas sonoras que são incríveis, todas contém a licença CC0, ou seja, **sem direitos reservados**
 
-O game conta com trihas sonoras que são incríveis
+## Download e Instalação
+
+### Requisitos
+
+Aqui estão os requisitos necessários para fazer a instalação do jogo:
+
+- Ter [python](https://www.python.org/downloads) 3 instalado
+
+- Ter o módulo pygame instalado no python. Caso não haja, aqui vão os passos para instalá-lo:
+
+  - Abra o **Prompt de Comando**
+  - Digite o seguinte comando: 
+    - Linux e MacOS: `python3 -m pip install pygame` 
+    - Windows: `python -m pip install pygame`
+  - Pronto, o módulo `pygame` foi instalado com sucesso.
+
+  Caso em sua instalação ocorra erros, deixe uma issue para podermos tentar resolver da melhor forma possível.
+
+### Download
+
+Para fazer o download da aplicação é simples, basta apenas clicar na opção **Code** da página inicial do repositório do github, ou logo após isso é possível selecionar a opção mais viável para clonar o repositório, caso não haja nenhum git client instalado no seu computador, recomendo selecionar a opção **Download ZIP**, para download direto, [CLIQUE AQUI](https://github.com/KaioBatista/pygame-snake-game/archive/master.zip), que baixará um arquivo chamado `master.zip ` para sua pasta padrão de downloads.
+
+![download-image](img-git/tutorial-download.jpg)
+
+### Instalação
+
+Após o download executado com sucesso basta seguir apenas 5 passos:
+
+**É necessário que você verifique os [REQUISITOS](#Requisitos) para a instalação**
+
+- Extraia o arquivo `master.zip` para alguma pasta de sua preferência
+- Abra a pasta criada com o arquivo extraido e aperte **_Shift_ + Botão Direito** do mouse em um local vazio
+- Clique na opção "_Abrir janela de comando aqui_" que aparecerá
+- Com o prompt de comando aberto; digite: `python3 -m main,py` para abrir o game
+- Divirta-se!
+
+---
+
+## Problemas conhecidos:
+
+- Na geração aleatória da maça há uma chance em três mil e seiscentas de o spawn ocorrer sobre o player
+- Há possibilidade da maça ser gerada dentro da área do score
+- Algumas vezes o player não atravessa diretamente de um lado para o outro quando ele passa dos limites do mundo
+
+---
+
+Made by: Kaio Batista
+
+Date: 01/31/2021
+
+_MIT License_
