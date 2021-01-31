@@ -1,6 +1,6 @@
 
 
-<center><h1>Pygame Snake Game</h1></center>
+<center><h1>Pygame_Snake_Game</h1></center>
 
 Versão atual: **V1.0**
 
@@ -12,12 +12,12 @@ Download: [mirror](https://www.github.com/KaioBatista/pygame-snake-game/archive/
 
 - **Índices**
 
-- [**Apresentação**](##Apresentação)
-- [**Download e Instalação**](##Download e Instalação)
-  - [Requisitos](###Requisitos)
-  - [Download](###Download)
-  - [Instalação](###Instalação)
-- [**Problemas Conhecidos**](##Problemas Conhecidos)
+- [**Apresentação**](#Apresentação)
+- [**Download e Instalação**](#Download_e_Instalação)
+  - [Requisitos](#Requisitos)
+  - [Download](#Download)
+  - [Instalação](#Instalação)
+- [**Problemas Conhecidos**](#Problemas_Conhecidos)
 
 # Apresentação
 
@@ -55,7 +55,7 @@ O game conta com músicas e efeitos sonoros, todos contém a licença CC0, ou se
 
 
 
-## Download e Instalação
+## Download_e_Instalação
 
 ### Requisitos
 
@@ -83,7 +83,7 @@ Para fazer o download da aplicação é simples, basta apenas clicar na opção 
 
 Após o download executado com sucesso basta seguir apenas 5 passos:
 
-**É necessário que você verifique os [REQUISITOS](###Requisitos) para a instalação**
+**É necessário que você verifique os [REQUISITOS](#Requisitos) para a instalação**
 
 - Extraia o arquivo `master.zip` para alguma pasta de sua preferência
 - Abra a pasta criada com o arquivo extraido e aperte **_Shift_ + Botão Direito** do mouse em um local vazio
@@ -93,7 +93,7 @@ Após o download executado com sucesso basta seguir apenas 5 passos:
 
 ---
 
-## Problemas conhecidos:
+## Problemas_conhecidos:
 
 - Na geração aleatória da maça há uma chance em três mil e seiscentas de o spawn ocorrer sobre o player
 - Há possibilidade da maça ser gerada dentro da área do score
@@ -107,6 +107,6 @@ Date: 01/31/2021
 
 _MIT License_
 
+---
 
-
-:arrow_heading_up:[Voltar ao início](#Pygame Snake Game)
+:arrow_heading_up:[Voltar ao início](#Pygame_Snake_Game)
