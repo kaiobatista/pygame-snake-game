@@ -4,8 +4,7 @@
 
 Versão atual: **V1.0**
 
-Download: [mirror](https://www.github.com/KaioBatisa/archive/master.zip)
-
+Download: [mirror](https://www.github.com/KaioBatisa/archives/master.zip)
 # Apresentação
 
 ![Tela-Inicial](img-git/tela-inicial.jpg)
