@@ -99,6 +99,8 @@ Após o download executado com sucesso basta seguir apenas 5 passos:
 
 ---
 
+Edição feita pelo zorin-os (teste)
+
 ## Problemas_conhecidos:
 
 - Na geração aleatória da maça há uma chance em três mil e seiscentas de o spawn ocorrer sobre o player

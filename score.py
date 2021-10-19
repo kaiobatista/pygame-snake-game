@@ -1,7 +1,8 @@
 def get_highscore(arq):
     try:
         with open(arq, 'r+') as file:
-                return file.read()
+            return file.read()
+            file.close()
     except FileNotFoundError:
         with open(arq, 'w+') as file:
             file.close()
