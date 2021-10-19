@@ -1,5 +1,4 @@
 
-
 <center><h1>Pygame_Snake_Game</h1></center>
 
 Versão atual: **V1.0**
@@ -98,8 +97,6 @@ Após o download executado com sucesso basta seguir apenas 5 passos:
 - Divirta-se!
 
 ---
-
-Edição feita pelo zorin-os (teste)
 
 ## Problemas_conhecidos:
 
