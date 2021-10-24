@@ -2,21 +2,21 @@ import pygame as pg
 from player import Snake
 from settings import *
 
-def show_text(screen, text_input, lst=(0, 0), color=(255, 255, 255), font_type="src/fnts/nasalization-rg.ttf", size=20):
+def show_text(screen, text_input, lst=(0, 0), color=(255, 255, 255), font_type=DEFAULT_FONT, size=20):
     _font = pg.font.Font(font_type, size)
     _text = _font.render(text_input, True, color)
     screen.blit(_text, lst)
 
-def get_highscore(arq):
+def get_highscore():
     try:
-        with open(arq, 'r+') as file:
+        with open(HIGHSCORE_PATH, 'r+') as file:
             return file.read()
     except FileNotFoundError:
-        with open(arq, 'w+') as file:
+        with open(HIGHSCORE_PATH, 'w+') as file:
             file.close()
 
-def set_highscore(arq, scr):
-    with open(arq, 'w+') as file:
+def set_highscore(scr):
+    with open(HIGHSCORE_PATH, 'w+') as file:
         file.write(str(bin(scr)))
 
 
@@ -35,9 +35,10 @@ class Game:
         self.running = True
 
     def load_game(self):
-        pg.mixer.music.load("src/snd/8bit-bossa.mp3")
-        self.apple_sound = pg.mixer.Sound("src/snd/apple_sound.wav")
-        self.game_over_sound = pg.mixer.Sound("src/snd/game-over-sound.wav")
+        pg.mixer.music.load(GAME_MUSIC)
+        pg.mixer.music.play()
+        self.apple_sound = pg.mixer.Sound(APPLE_SOUND)
+        self.game_over_sound = pg.mixer.Sound(GAME_OVER_SOUND)
         self.any_apple = True
         self.score = 0
         self.running = True
@@ -47,8 +48,8 @@ class Game:
         self.snake = Snake()
     
     def run(self):
-        self.load_game()
         self.start_screen()
+        self.load_game()
         while self.running:
             self.clock.tick(30)
             self.events()
@@ -117,7 +118,7 @@ class Game:
 
     def start_screen(self):
         
-        pg.mixer.music.load("src/snd/menu.mp3")
+        pg.mixer.music.load(START_SCREEN_MUSIC)
         pg.mixer.music.play()
         pg.mixer.music.set_volume(0.4)
         while True:
@@ -148,10 +149,10 @@ class Game:
             pg.display.flip()
 
     def end_screen(self):
-        pg.mixer.music.load("src/snd/game-over.ogg")
+        pg.mixer.music.load(GAME_OVER_MUSIC)
         pg.mixer.music.play()
         pg.mixer.music.set_volume(0.7)
-        highscore = get_highscore('highscore.txt')
+        highscore = get_highscore()
         try:
             highscore = int(highscore, 2)
         except (ValueError, TypeError):
@@ -174,7 +175,7 @@ class Game:
             self.window.fill((36, 9, 11))
             show_text(self.window, text_score, lst=(400 - (30 * len(text_score)), 60), size=60)
             if self.score > highscore:
-                set_highscore('highscore.txt', self.score)
+                set_highscore(self.score)
                 show_text(self.window, "New Record!", (230, 150), size=20)
             show_text(self.window, 'Press "Q" to exit', (75, 350), size=30)
             show_text(self.window, 'Press "R" to play again', (75, 400), size=30)
