@@ -42,7 +42,7 @@ class Game:
         self.score = 0
         self.running = True
         
-        self.apple_x, self.apple_y = apple_gen(WIDTH, HEIGHT)
+        self.apple_x, self.apple_y = self.apple_gen(WIDTH, HEIGHT)
 
         self.snake = Snake()
     
@@ -72,7 +72,7 @@ class Game:
             self.snake.body.pop()
 
         if not self.any_apple:
-            self.apple_x, self.apple_y = apple_gen(WIDTH, HEIGHT)
+            self.apple_x, self.apple_y = self.apple_gen(WIDTH, HEIGHT)
             self.any_apple = True
         
         for block in self.snake.body[1:]:
