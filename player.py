@@ -18,7 +18,6 @@ class Snake:
 
     def update(self):
         # Movement
-        print(self.movement, self.last_movement)
         if self.movement == "UP" and self.last_movement != "DOWN":
             self.last_movement = "UP"
         if self.movement == "LEFT" and self.last_movement != "RIGHT":

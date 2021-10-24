@@ -42,7 +42,7 @@ class Game:
         self.score = 0
         self.running = True
         
-        self.apple_x, self.apple_y = self.apple_gen(WIDTH, HEIGHT)
+        self.apple_x, self.apple_y = self.apple_gen()
 
         self.snake = Snake()
     
@@ -72,7 +72,7 @@ class Game:
             self.snake.body.pop()
 
         if not self.any_apple:
-            self.apple_x, self.apple_y = self.apple_gen(WIDTH, HEIGHT)
+            self.apple_x, self.apple_y = self.apple_gen()
             self.any_apple = True
         
         for block in self.snake.body[1:]:
@@ -108,10 +108,11 @@ class Game:
         pg.quit()
         quit()
 
-    def apple_gen(width, height):
+    @staticmethod
+    def apple_gen():
         from random import randrange
-        x = randrange(0, width - 10, 10)
-        y = randrange(0, height - 10, 10)
+        x = randrange(0, WIDTH - 10, 10)
+        y = randrange(0, HEIGHT - 10, 10)
         return x, y
 
     def start_screen(self):
