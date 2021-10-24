@@ -1,7 +1,7 @@
 
 <center><h1>Pygame_Snake_Game</h1></center>
 
-Versão atual: **V1.0**
+Versão atual: **V1.5**
 
 Download: [mirror](https://www.github.com/KaioBatista/pygame-snake-game/archive/master.zip)
 
