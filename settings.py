@@ -1,0 +1,2 @@
+WIDTH, HEIGHT = 600, 600
+TITLE = 'Snake Game'
