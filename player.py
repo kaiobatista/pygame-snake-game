@@ -10,10 +10,11 @@ class Snake:
 
         self.movement = self.last_movement = None
 
-        self.color = (0, 255, 0)
+        self.color = SNAKE_COLOR[1]
+        self.head_color = SNAKE_COLOR[0]
         self.size = 10
 
-    def grow_up_snake(self):
+    def grow_up(self):
         self.body.insert(0, list(self.head))
 
     def update(self):
@@ -48,7 +49,7 @@ class Snake:
 
     def draw(self, canvas):
         for pos in self.body:
-            pg.draw.rect(canvas, self.color, (pos[0], pos[1], self.size, self.size))    
+            pg.draw.rect(canvas, self.color if not pos == self.head else self.head_color, (pos[0], pos[1], self.size, self.size))    
 
     def getColision(self, apple_pos):
         return (self.head[0] == apple_pos[0] and self.head[1] == apple_pos[1])

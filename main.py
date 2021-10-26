@@ -33,22 +33,29 @@ class Game:
         self.beginning = True
         self.game_over = False
         self.running = True
+        self.fruit_colors = {
+                            "apple": (255, 0, 0), 
+                            "blueberry": (0, 0, 255),
+                            "orange": (255, 145, 0)
+                            }
+        self.fruit_sound = pg.mixer.Sound(FRUIT_SOUND)
+        self.game_over_sound = pg.mixer.Sound(GAME_OVER_SOUND)
 
     def load_game(self):
         pg.mixer.music.load(GAME_MUSIC)
         pg.mixer.music.play()
-        self.apple_sound = pg.mixer.Sound(APPLE_SOUND)
-        self.game_over_sound = pg.mixer.Sound(GAME_OVER_SOUND)
-        self.any_apple = True
+        
+        self.any_fruit = True
         self.score = 0
         self.running = True
         
-        self.apple_x, self.apple_y = self.apple_gen()
+        self.fruit_x, self.fruit_y, self.fruit_type = self.fruit_gen()
 
         self.snake = Snake()
     
     def run(self):
         self.start_screen()
+        self.menu_screen()
         self.load_game()
         while self.running:
             self.clock.tick(30)
@@ -63,18 +70,22 @@ class Game:
 
     def update(self):
         self.snake.update()
-        self.snake.grow_up_snake()
+        self.snake.grow_up()
 
-        if self.snake.getColision([self.apple_x, self.apple_y]):
-            self.apple_sound.play()
-            self.any_apple = False
+        if self.snake.getColision([self.fruit_x, self.fruit_y]):
+            self.fruit_sound.play()
+            self.any_fruit = False
             self.score += 1
+            if self.fruit_type == 'blueberry':
+                self.score +=1
+            elif self.fruit_type == 'orange':
+                self.snake.body.pop()
         else:
             self.snake.body.pop()
 
-        if not self.any_apple:
-            self.apple_x, self.apple_y = self.apple_gen()
-            self.any_apple = True
+        if not self.any_fruit:
+            self.fruit_x, self.fruit_y, self.fruit_type = self.fruit_gen()
+            self.any_fruit = True
         
         for block in self.snake.body[1:]:
             if block[0] == self.snake.head[0] and block[1] == self.snake.head[1]:
@@ -86,7 +97,7 @@ class Game:
     def draw(self):
         self.window.fill((0, 0, 0))
         self.snake.draw(self.window)
-        pg.draw.rect(self.window, (255, 0, 0), (self.apple_x, self.apple_y, 10, 10))
+        pg.draw.rect(self.window, self.fruit_colors[self.fruit_type], (self.fruit_x, self.fruit_y, 10, 10))
         score_text = "Score: " + str(self.score)
         show_text(self.window, score_text, (((WIDTH / 2) - (20 * len(score_text)) / 2 + 40), 0), (255, 255, 255))
         pg.display.update()
@@ -110,11 +121,19 @@ class Game:
         quit()
 
     @staticmethod
-    def apple_gen():
-        from random import randrange
-        x = randrange(0, WIDTH - 10, 10)
-        y = randrange(0, HEIGHT - 10, 10)
-        return x, y
+    def fruit_gen():
+        import random
+        x = random.randrange(0, WIDTH - 10, 10)
+        y = random.randrange(0, HEIGHT - 10, 10)
+        chance = random.random()
+
+        if chance > .9:
+            fruit_type = 'orange'
+        elif chance > .7:
+            fruit_type = 'blueberry'
+        else:
+            fruit_type = 'apple'
+        return x, y, fruit_type
 
     def start_screen(self):
         
@@ -125,8 +144,7 @@ class Game:
 
             for event in pg.event.get():
                 if event.type == pg.QUIT:
-                    pg.quit()
-                    quit()
+                    self.exit()
 
                 if event.type == pg.KEYDOWN:
                     if event.key == pg.K_RETURN or event.key == pg.K_SPACE:
@@ -162,8 +180,7 @@ class Game:
         while True:
             for event in pg.event.get():
                 if event.type == pg.QUIT:
-                    pg.quit()
-                    quit()
+                    self.quit()
                 if event.type == pg.KEYUP:
                     if event.key == pg.K_q:
                         return False
@@ -179,6 +196,37 @@ class Game:
                 show_text(self.window, "New Record!", (230, 150), size=20)
             show_text(self.window, 'Press "Q" to exit', (75, 350), size=30)
             show_text(self.window, 'Press "R" to play again', (75, 400), size=30)
+            pg.display.flip()
+
+    def menu_screen(self):
+        cor_fundo = (0, 0, 0)
+        while True:
+            for event in pg.event.get():
+                if event.type == pg.QUIT:
+                    self.exit()
+            
+                if event.type == pg.MOUSEBUTTONDOWN:
+                    click = pg.mouse.get_pos()
+                    if (click[0] - 180) ** 2 + (click[1] - HEIGHT / 2) ** 2 <= 40 ** 2:
+                        SNAKE_COLOR[0] = (0, 255, 0)
+                        SNAKE_COLOR[1] = cor_fundo = (20, 170, 0)
+                    elif (click[0] - 300) ** 2 + (click[1] - HEIGHT / 2) ** 2 <= 40 ** 2:
+                        SNAKE_COLOR[0] = (46, 191, 143)
+                        SNAKE_COLOR[1] = cor_fundo = (49, 125, 100)
+                    elif (click[0] - 420) ** 2 + (click[1] - HEIGHT / 2) ** 2 <= 40 ** 2:
+                        SNAKE_COLOR[0] = (136, 51, 214)
+                        SNAKE_COLOR[1] = cor_fundo = (98, 53, 133)
+                    elif WIDTH / 2 - 25 + 90> click[0] > WIDTH / 2 - 50 and HEIGHT / 2 + 120 > click[1] > HEIGHT / 2 + 80:
+                        if len(SNAKE_COLOR[0]) > 0 and len(SNAKE_COLOR[1]) > 0:
+                            return 0
+
+            self.window.fill(cor_fundo)
+            show_text(self.window, "Choose the snake's color:", (170, 80))
+            pg.draw.circle(self.window, (0, 255, 0), (180, HEIGHT / 2), 40)
+            pg.draw.circle(self.window, (46, 191, 143), (300 , HEIGHT / 2), 40)
+            pg.draw.circle(self.window, (136, 51, 214), (420, HEIGHT / 2), 40)
+            pg.draw.rect(self.window, (0, 0, 0), (WIDTH / 2 - 50, HEIGHT / 2 + 80, 100, 40))
+            show_text(self.window, "Start", (WIDTH / 2 - 25, HEIGHT / 2 + 90))
             pg.display.flip()
 
 
