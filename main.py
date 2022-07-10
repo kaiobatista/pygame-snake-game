@@ -58,7 +58,7 @@ class Game:
         self.menu_screen()
         self.load_game()
         while self.running:
-            self.clock.tick(30)
+            self.clock.tick(15)
             self.events()
             self.update()
             self.draw()
@@ -92,12 +92,13 @@ class Game:
                 pg.mixer.music.stop()
                 pg.mixer.music.unload()
                 self.game_over_sound.play()
-                self.running = False        
+                self.running = False
 
     def draw(self):
-        self.window.fill((0, 0, 0))
+        self.window.fill((10, 10, 10))
+        self.draw_grid()
         self.snake.draw(self.window)
-        pg.draw.rect(self.window, self.fruit_colors[self.fruit_type], (self.fruit_x, self.fruit_y, 10, 10))
+        pg.draw.rect(self.window, self.fruit_colors[self.fruit_type], (self.fruit_x, self.fruit_y, 40, 40))
         score_text = "Score: " + str(self.score)
         show_text(self.window, score_text, (((WIDTH / 2) - (20 * len(score_text)) / 2 + 40), 0), (255, 255, 255))
         pg.display.update()
@@ -123,17 +124,23 @@ class Game:
     @staticmethod
     def fruit_gen():
         import random
-        x = random.randrange(0, WIDTH - 10, 10)
-        y = random.randrange(0, HEIGHT - 10, 10)
+        x = random.randrange(0, WIDTH - 40, 40)
+        y = random.randrange(0, HEIGHT - 40, 40)
         chance = random.random()
+        chance = 0
 
-        if chance > .9:
+        if chance > 1 - 0.1:
             fruit_type = 'orange'
-        elif chance > .7:
+        elif chance > 1 - 0.3:
             fruit_type = 'blueberry'
         else:
             fruit_type = 'apple'
         return x, y, fruit_type
+
+    def draw_grid(self):
+        for i in range(int(WIDTH / 40)):
+            pg.draw.line(self.window, (255, 255, 255), (0, 40 * i), (WIDTH, 40 * i))
+            pg.draw.line(self.window, (255, 255, 255), (40 * i, 0), (40 * i, HEIGHT))
 
     def start_screen(self):
         

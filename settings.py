@@ -1,7 +1,7 @@
 import os
 ABS_PATH = os.path.dirname(os.path.abspath(__file__))
 
-WIDTH, HEIGHT = 600, 600
+WIDTH, HEIGHT = 800, 800
 TITLE = 'Snake Game'
 
 GAME_MUSIC = ABS_PATH + "/src/snd/8bit-bossa.mp3"
