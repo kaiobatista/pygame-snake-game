@@ -44,21 +44,22 @@ class Game:
     def load_game(self):
         pg.mixer.music.load(GAME_MUSIC)
         pg.mixer.music.play()
-        
+        self.snake = Snake()
+
         self.any_fruit = True
         self.score = 0
         self.running = True
         
         self.fruit_x, self.fruit_y, self.fruit_type = self.fruit_gen()
-
-        self.snake = Snake()
-    
+        
+        self.grid_on = False
+        
     def run(self):
         self.start_screen()
         self.menu_screen()
         self.load_game()
         while self.running:
-            self.clock.tick(15)
+            self.clock.tick(20)
             self.events()
             self.update()
             self.draw()
@@ -70,8 +71,8 @@ class Game:
 
     def update(self):
         self.snake.update()
-        self.snake.grow_up()
 
+        self.snake.grow_up()
         if self.snake.getColision([self.fruit_x, self.fruit_y]):
             self.fruit_sound.play()
             self.any_fruit = False
@@ -96,7 +97,8 @@ class Game:
 
     def draw(self):
         self.window.fill((10, 10, 10))
-        self.draw_grid()
+        if self.grid_on:
+            self.draw_grid()
         self.snake.draw(self.window)
         pg.draw.rect(self.window, self.fruit_colors[self.fruit_type], (self.fruit_x, self.fruit_y, 40, 40))
         score_text = "Score: " + str(self.score)
@@ -117,15 +119,23 @@ class Game:
                 if event.key == pg.K_s or event.key == pg.K_DOWN:
                     self.snake.movement = "DOWN"
 
+                # Debug controls
+                if event.key == pg.K_SPACE:
+                    self.snake.grow_up()
+                if event.key == pg.K_g:
+                    self.grid_on = not self.grid_on
+
     def exit(self):
         pg.quit()
         quit()
 
-    @staticmethod
-    def fruit_gen():
+    def fruit_gen(self):
         import random
-        x = random.randrange(0, WIDTH - 40, 40)
-        y = random.randrange(0, HEIGHT - 40, 40)
+        while True:
+            x = random.randrange(0, WIDTH - 40, 40)
+            y = random.randrange(0, HEIGHT - 40, 40)
+            if [x, y] not in self.snake.body:
+                break
         chance = random.random()
         chance = 0
 
@@ -145,8 +155,8 @@ class Game:
     def start_screen(self):
         
         pg.mixer.music.load(START_SCREEN_MUSIC)
-        pg.mixer.music.play()
         pg.mixer.music.set_volume(0.4)
+        pg.mixer.music.play()
         while True:
 
             for event in pg.event.get():
@@ -161,16 +171,16 @@ class Game:
 
                 if event.type == pg.MOUSEBUTTONDOWN:
                     click = pg.mouse.get_pos()
-                    if 200 <= click[0] <= 400:
+                    if WIDTH / 2 - 100 <= click[0] <= WIDTH / 2 + 100:
                         if 350 <= click[1] <= 450:
                             pg.mixer.music.stop()
                             pg.mixer.music.unload()
                             return 0
 
             self.window.fill((194, 245, 66))
-            show_text(self.window, "Snake Game", (30, 100), size=80)
-            pg.draw.rect(self.window, (131, 171, 31), (200, 350, 200, 100))
-            show_text(self.window, "Play!", (240, 400 - 30), (255, 255, 255), size=50)
+            show_text(self.window, "Snake Game", (WIDTH / 2 - len("Snake Game") * 50 / 2, 100), size=80)
+            pg.draw.rect(self.window, (131, 171, 31), (WIDTH / 2 - 100, 350, 200, 100))
+            show_text(self.window, "Play!", (WIDTH / 2 - 60, 400 - 30), (255, 255, 255), size=50)
             pg.display.flip()
 
     def end_screen(self):
@@ -197,12 +207,12 @@ class Game:
                         return True
 
             self.window.fill((36, 9, 11))
-            show_text(self.window, text_score, lst=(400 - (30 * len(text_score)), 60), size=60)
+            show_text(self.window, text_score, lst=(WIDTH / 2 - (15 * len(text_score)), 60), size=60)
             if self.score > highscore:
                 set_highscore(self.score)
-                show_text(self.window, "New Record!", (230, 150), size=20)
-            show_text(self.window, 'Press "Q" to exit', (75, 350), size=30)
-            show_text(self.window, 'Press "R" to play again', (75, 400), size=30)
+                show_text(self.window, "New Record!", (WIDTH / 3, 150), size=20)
+            show_text(self.window, '> Press "Q" to exit', (WIDTH / 3 - 200, 350), size=30)
+            show_text(self.window, '> Press "R" to play again', (WIDTH / 3 - 200, 400), size=30)
             pg.display.flip()
 
     def menu_screen(self):
@@ -214,13 +224,13 @@ class Game:
             
                 if event.type == pg.MOUSEBUTTONDOWN:
                     click = pg.mouse.get_pos()
-                    if (click[0] - 180) ** 2 + (click[1] - HEIGHT / 2) ** 2 <= 40 ** 2:
+                    if (click[0] - WIDTH * 0.25) ** 2 + (click[1] - HEIGHT / 2) ** 2 <= 40 ** 2:
                         SNAKE_COLOR[0] = (0, 255, 0)
                         SNAKE_COLOR[1] = cor_fundo = (20, 170, 0)
-                    elif (click[0] - 300) ** 2 + (click[1] - HEIGHT / 2) ** 2 <= 40 ** 2:
+                    elif (click[0] - WIDTH * 0.5) ** 2 + (click[1] - HEIGHT / 2) ** 2 <= 40 ** 2:
                         SNAKE_COLOR[0] = (46, 191, 143)
                         SNAKE_COLOR[1] = cor_fundo = (49, 125, 100)
-                    elif (click[0] - 420) ** 2 + (click[1] - HEIGHT / 2) ** 2 <= 40 ** 2:
+                    elif (click[0] - WIDTH * 0.75) ** 2 + (click[1] - HEIGHT / 2) ** 2 <= 40 ** 2:
                         SNAKE_COLOR[0] = (136, 51, 214)
                         SNAKE_COLOR[1] = cor_fundo = (98, 53, 133)
                     elif WIDTH / 2 - 25 + 90> click[0] > WIDTH / 2 - 50 and HEIGHT / 2 + 120 > click[1] > HEIGHT / 2 + 80:
@@ -228,10 +238,10 @@ class Game:
                             return 0
 
             self.window.fill(cor_fundo)
-            show_text(self.window, "Choose the snake's color:", (170, 80))
-            pg.draw.circle(self.window, (0, 255, 0), (180, HEIGHT / 2), 40)
-            pg.draw.circle(self.window, (46, 191, 143), (300 , HEIGHT / 2), 40)
-            pg.draw.circle(self.window, (136, 51, 214), (420, HEIGHT / 2), 40)
+            show_text(self.window, "Choose the snake's color:", (WIDTH / 2 - 10 * len("Choose the snake's color:"), 80), size=40)
+            pg.draw.circle(self.window, (0, 255, 0), (WIDTH * 0.25, HEIGHT / 2), 40)
+            pg.draw.circle(self.window, (46, 191, 143), (WIDTH * 0.5 , HEIGHT / 2), 40)
+            pg.draw.circle(self.window, (136, 51, 214), (WIDTH * 0.75, HEIGHT / 2), 40)
             pg.draw.rect(self.window, (0, 0, 0), (WIDTH / 2 - 50, HEIGHT / 2 + 80, 100, 40))
             show_text(self.window, "Start", (WIDTH / 2 - 25, HEIGHT / 2 + 90))
             pg.display.flip()

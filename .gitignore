@@ -8,3 +8,5 @@ highscore.txt
 venv/
 
 .venv/
+
+.vscode/
