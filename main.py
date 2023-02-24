@@ -39,7 +39,9 @@ class Game:
                             "orange": (255, 145, 0)
                             }
         self.fruit_sound = pg.mixer.Sound(FRUIT_SOUND)
+        self.fruit_sound.set_volume(0.3)
         self.game_over_sound = pg.mixer.Sound(GAME_OVER_SOUND)
+        self.game_over_sound.set_volume(0.4)
 
     def load_game(self):
         pg.mixer.music.load(GAME_MUSIC)
